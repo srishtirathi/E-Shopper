@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import './App.css';
 import Product from './components/Product/Product';
@@ -12,7 +11,7 @@ class App extends Component {
         {
           id: 1,
           product: 'Mango',
-          price: 50,
+          price: 'srishti',
           quantity: 0,
           img: 'assets/Mango.jpg',
         },
@@ -38,10 +37,12 @@ class App extends Component {
   }
 
   increaseCount(id) {
+    const { cartCount, products } = this.state;
     const newState = {
+
       ...this.state,
-      cartCount: this.state.cartCount + 1,
-      products: this.state.products.map((eachProduct) => {
+      cartCount: cartCount + 1,
+      products: products.map((eachProduct) => {
         if (eachProduct.id === id) {
           return { ...eachProduct, quantity: eachProduct.quantity + 1 };
         }
@@ -52,14 +53,15 @@ class App extends Component {
   }
 
   decreaseCount(item) {
+    const { cartCount, products } = this.state;
     if (item.quantity === 0) {
       return;
     }
     const newState = {
 
       ...this.state,
-      cartCount: this.state.cartCount - 1,
-      products: this.state.products.map((eachProduct) => {
+      cartCount: cartCount - 1,
+      products: products.map((eachProduct) => {
         if (eachProduct === item) {
           return { ...eachProduct, quantity: eachProduct.quantity - 1 };
         }
@@ -71,12 +73,13 @@ class App extends Component {
   }
 
   render() {
+    const { cartCount, products } = this.state;
     return (
 
       <div>
-        <Navbar cartCount={this.state.cartCount} />
+        <Navbar cartCount={cartCount} />
         <div className="container">
-          {this.state.products.map(
+          {products.map(
             (item) => (
               <Product
                 key={item.id}

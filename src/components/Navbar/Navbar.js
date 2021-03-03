@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import './Navbar.css';
 import React from 'react';
 
@@ -15,5 +15,8 @@ function Navbar({ cartCount }) {
     </div>
   );
 }
+Navbar.propTypes = {
+  cartCount: PropTypes.number.isRequired,
+};
 
 export default Navbar;

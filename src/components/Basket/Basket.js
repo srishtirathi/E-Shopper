@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Basket({ cartCount }) {
   return (
@@ -11,4 +11,8 @@ function Basket({ cartCount }) {
     </div>
   );
 }
+Basket.propTypes = {
+  cartCount: PropTypes.number.isRequired,
+};
+
 export default Basket;

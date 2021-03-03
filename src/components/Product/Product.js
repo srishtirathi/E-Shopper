@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Quantity from '../Quantity/Quantity';
 import './Product.css';
@@ -28,5 +28,14 @@ function Product({
     </div>
   );
 }
+Product.propTypes = {
+  product: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  increaseCount: PropTypes.func.isRequired,
+  decreaseCount: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  img: PropTypes.string.isRequired,
+};
 
 export default Product;

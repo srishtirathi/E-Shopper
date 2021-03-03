@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import React from 'react';
 import './Quantity.css';
 
@@ -15,5 +15,10 @@ function Quantity({
     </div>
   );
 }
+Quantity.propTypes = {
+  increaseCount: PropTypes.func.isRequired,
+  decreaseCount: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
 
 export default Quantity;
