@@ -9,7 +9,7 @@ function Navbar({ cartCount }) {
     <div>
       <nav>
 
-        <p>Ecommerce</p>
+        <p>E-Shopper</p>
         <Basket cartCount={cartCount} />
       </nav>
     </div>
