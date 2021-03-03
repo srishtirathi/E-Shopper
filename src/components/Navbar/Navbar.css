@@ -1,0 +1,16 @@
+nav{
+    background-color: grey;
+   display: flex;
+   margin: 0;
+   justify-content: space-between;
+
+}   
+
+li{
+    list-style-type:none;
+    display: inline;
+   
+   padding: 30px;
+    
+     
+}
