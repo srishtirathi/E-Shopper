@@ -1,0 +1,16 @@
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0,0, 0.3);
+    width: 30%;
+
+}
+
+.container{
+    margin-top: 20px;
+    padding: 2px 16px;
+}
+
+.fruit-img{
+    margin-top: 20px;
+    width:200px; 
+    height: 150px;
+}
