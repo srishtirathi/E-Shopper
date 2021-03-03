@@ -1,0 +1,10 @@
+.quantity{
+    background-color: grey;
+    display: flex;
+    justify-content: space-between ;
+    
+}
+.button{
+    width: 50px;
+    
+}
