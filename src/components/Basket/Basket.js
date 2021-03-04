@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 function Basket({ cartCount }) {
   return (
     <div className="basket">
-      <td>
-        <tr>My cart</tr>
-        <tr>{cartCount}</tr>
-      </td>
+      <p>My Cart</p>
+      <p>{cartCount}</p>
     </div>
   );
 }

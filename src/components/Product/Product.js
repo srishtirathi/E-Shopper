@@ -12,11 +12,11 @@ function Product({
 
       <img src={img} className="fruit-img" alt="randomImg" />
       <div className="container">
-        <h1>{product}</h1>
-        <h1>
+        <p>{product}</p>
+        <p>
           Price:
           {price}
-        </h1>
+        </p>
       </div>
       <Quantity
         quantity={quantity}

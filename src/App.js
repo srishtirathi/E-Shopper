@@ -11,7 +11,7 @@ class App extends Component {
         {
           id: 1,
           product: 'Mango',
-          price: 'srishti',
+          price: 30,
           quantity: 0,
           img: 'assets/Mango.jpg',
         },
