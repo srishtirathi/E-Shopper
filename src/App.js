@@ -36,23 +36,23 @@ class App extends Component {
     };
   }
 
-  increaseCount(id) {
-    const { cartCount, products } = this.state;
-    const newState = {
+ increaseCount=(id) => {
+   const { cartCount, products } = this.state;
+   const newState = {
 
-      ...this.state,
-      cartCount: cartCount + 1,
-      products: products.map((eachProduct) => {
-        if (eachProduct.id === id) {
-          return { ...eachProduct, quantity: eachProduct.quantity + 1 };
-        }
-        return eachProduct;
-      }),
-    };
-    this.setState(newState);
-  }
+     ...this.state,
+     cartCount: cartCount + 1,
+     products: products.map((eachProduct) => {
+       if (eachProduct.id === id) {
+         return { ...eachProduct, quantity: eachProduct.quantity + 1 };
+       }
+       return eachProduct;
+     }),
+   };
+   this.setState(newState);
+ }
 
-  decreaseCount(item) {
+  decreaseCount=(item) => {
     const { cartCount, products } = this.state;
     if (item.quantity === 0) {
       return;
@@ -83,13 +83,14 @@ class App extends Component {
             (item) => (
               <Product
                 key={item.id}
-                increaseCount={() => { this.increaseCount(item.id); }}
-                decreaseCount={() => { this.decreaseCount(item); }}
+                increaseCount={this.increaseCount}
+                decreaseCount={this.decreaseCount}
                 product={item.product}
                 price={item.price}
                 quantity={item.quantity}
                 id={item.id}
                 img={item.img}
+                item={item}
               />
             ),
           )}

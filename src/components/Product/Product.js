@@ -5,7 +5,7 @@ import Quantity from '../Quantity/Quantity';
 import './Product.css';
 
 function Product({
-  decreaseCount, increaseCount, product, price, quantity, id, img,
+  decreaseCount, increaseCount, product, price, quantity, id, img, item,
 }) {
   return (
     <div className="card">
@@ -20,8 +20,8 @@ function Product({
       </div>
       <Quantity
         quantity={quantity}
-        increaseCount={increaseCount}
-        decreaseCount={decreaseCount}
+        increaseCount={() => { increaseCount(id); }}
+        decreaseCount={() => { decreaseCount(item); }}
         id={id}
       />
 
@@ -36,6 +36,7 @@ Product.propTypes = {
   quantity: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   img: PropTypes.string.isRequired,
+  item: PropTypes.string.isRequired,
 };
 
 export default Product;
