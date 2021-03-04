@@ -14,7 +14,7 @@
     width:200px; 
     height: 150px;
 }
-@media screen and (max-width: 24rem){
+@media screen and (max-width: 27rem){
 .card{
     width: auto;
     padding-top: 20px;
