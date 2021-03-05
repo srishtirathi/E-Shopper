@@ -10,6 +10,7 @@ function Navbar({ cartCount }) {
       <nav>
 
         <Link to="/"><p>E-Shopper</p></Link>
+        <Link to="/allorders"><p>All Orders</p></Link>
         <Link to="/cart"><Basket cartCount={cartCount} /></Link>
       </nav>
     </div>
