@@ -9,6 +9,7 @@ import Product from './components/Product/Product';
 import Navbar from './components/Navbar/Navbar';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
+import Allorders from './components/Allorders/Allorders';
 
 class App extends Component {
   constructor(props) {
@@ -97,6 +98,7 @@ class App extends Component {
         <BrowserRouter>
           <Navbar cartCount={cartCount} />
           <Switch>
+            <Route path="/allorders"><Allorders /></Route>
             <Route path="/cart">
               <Cart cartItems={cartItems} cartCount={cartCount} />
             </Route>

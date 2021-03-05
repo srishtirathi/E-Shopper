@@ -41,7 +41,7 @@ render() {
           </label>
           <label>
             E-mail:
-            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
           </label>
           <label>
             Address:
@@ -49,7 +49,7 @@ render() {
           </label>
           <label>
             Contact Number:
-            <input type="text" name="contact" value={this.state.contact} onChange={this.handleChange} />
+            <input type="text" name="contact" value={this.state.contact} pattern="[0-9]{10}" onChange={this.handleChange} />
           </label>
           <input type="submit" value="submit" />
           <p>{this.state.message}</p>
