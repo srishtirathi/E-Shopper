@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './Navbar.css';
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Basket from '../Basket/Basket';
 
 function Navbar({ cartCount }) {
@@ -9,8 +9,8 @@ function Navbar({ cartCount }) {
     <div>
       <nav>
 
-        <p>E-Shopper</p>
-        <Basket cartCount={cartCount} />
+        <Link to="/"><p>E-Shopper</p></Link>
+        <Link to="/cart"><Basket cartCount={cartCount} /></Link>
       </nav>
     </div>
   );

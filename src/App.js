@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import Product from './components/Product/Product';
 import Navbar from './components/Navbar/Navbar';
+import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
 
 class App extends Component {
   constructor(props) {
@@ -33,13 +40,13 @@ class App extends Component {
 
       ],
       cartCount: 0,
+      cartItems: [],
     };
   }
 
  increaseCount=(id) => {
-   const { cartCount, products } = this.state;
-   const newState = {
-
+   const { cartCount, products, cartItems } = this.state;
+   let newState = {
      ...this.state,
      cartCount: cartCount + 1,
      products: products.map((eachProduct) => {
@@ -49,6 +56,11 @@ class App extends Component {
        return eachProduct;
      }),
    };
+   newState = {
+     ...newState,
+     cartItems: newState.products.filter((product) => product.quantity > 0),
+   };
+   console.log(cartItems);
    this.setState(newState);
  }
 
@@ -57,7 +69,7 @@ class App extends Component {
     if (item.quantity === 0) {
       return;
     }
-    const newState = {
+    let newState = {
 
       ...this.state,
       cartCount: cartCount - 1,
@@ -68,33 +80,45 @@ class App extends Component {
 
         return eachProduct;
       }),
+
+    };
+    newState = {
+      ...newState,
+      cartItems: newState.products.filter((product) => product.quantity > 0),
     };
     this.setState(newState);
   }
 
   render() {
-    const { cartCount, products } = this.state;
+    const { cartCount, products, cartItems } = this.state;
     return (
 
       <div>
-        <Navbar cartCount={cartCount} />
-        <div className="container">
-          {products.map(
-            (item) => (
-              <Product
-                key={item.id}
-                increaseCount={this.increaseCount}
-                decreaseCount={this.decreaseCount}
-                product={item.product}
-                price={item.price}
-                quantity={item.quantity}
-                id={item.id}
-                img={item.img}
-                item={item}
-              />
-            ),
-          )}
-        </div>
+        <BrowserRouter>
+          <Navbar cartCount={cartCount} />
+          <Switch>
+            <Route path="/cart">
+              <Cart cartItems={cartItems} cartCount={cartCount} />
+            </Route>
+            <Route path="/" exact>
+              <div className="container">
+                {products.map(
+                  (item) => (
+                    <Product
+                      key={item.id}
+                      increaseCount={this.increaseCount}
+                      decreaseCount={this.decreaseCount}
+                      item={item}
+                    />
+                  ),
+                )}
+              </div>
+            </Route>
+            <Route>
+              <Checkout path="/checkout" />
+            </Route>
+          </Switch>
+        </BrowserRouter>
 
       </div>
     );

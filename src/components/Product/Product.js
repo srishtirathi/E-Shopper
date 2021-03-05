@@ -5,38 +5,42 @@ import Quantity from '../Quantity/Quantity';
 import './Product.css';
 
 function Product({
-  decreaseCount, increaseCount, product, price, quantity, id, img, item,
+  decreaseCount, increaseCount, item,
 }) {
   return (
     <div className="card">
 
-      <img src={img} className="fruit-img" alt="randomImg" />
+      <img src={item.img} className="fruit-img" alt="randomImg" />
       <div className="container">
-        <p>{product}</p>
+        <p>{item.product}</p>
         <p>
           Price:
-          {price}
+          {item.price}
         </p>
       </div>
       <Quantity
-        quantity={quantity}
-        increaseCount={() => { increaseCount(id); }}
+        quantity={item.quantity}
+        increaseCount={() => { increaseCount(item.id); }}
         decreaseCount={() => { decreaseCount(item); }}
-        id={id}
+        id={item.id}
       />
 
     </div>
   );
 }
+
 Product.propTypes = {
-  product: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+
   increaseCount: PropTypes.func.isRequired,
   decreaseCount: PropTypes.func.isRequired,
-  quantity: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
-  img: PropTypes.string.isRequired,
-  item: PropTypes.string.isRequired,
+
+  item: PropTypes.shape({
+    product: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    img: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Product;
