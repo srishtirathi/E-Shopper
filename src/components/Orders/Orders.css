@@ -1,0 +1,12 @@
+.order-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.heading{
+    background-color: grey;
+}
+.item-description-table{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}

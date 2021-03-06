@@ -1,24 +1,27 @@
-/* eslint-disable no-lone-blocks */
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import './Cart.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Cart = ({ cartItems }) => {
-  { if (cartItems.length === 0) return (<div>Sorry, your cart is empty</div>); }
+const Cart = ({ cartItems, cartCount }) => {
+  if (cartCount === 0) {
+    return 'Your cart is empty';
+  }
   return (
 
     <div>
       <h1>
         Your basket has
         {' '}
+        {/* {' '}
         {Object.values(cartItems).reduce((prev, curr) => prev.quantity + curr.quantity)}
+        {' '} */}
+        {cartCount }
         {' '}
         items.
       </h1>
       <hr />
-      <table>
+      <table className="cart-table">
         <tr>
           <th>Item Description</th>
           <th>Unit Price</th>
@@ -40,12 +43,16 @@ const Cart = ({ cartItems }) => {
       </table>
       <div className="body-container">
         <div>
-          <Link to="/"><button type="button" className="checkout-button">Continue Shopping!</button></Link>
+          <Link to="/"><button type="button" className="continue-button">Continue Shopping!</button></Link>
         </div>
         <div className="cart-card">
           <div className="cart-container">
             <h4><b>Total</b></h4>
-            <p>{Object.values(cartItems).reduce((prev, curr) => prev.price * prev.quantity + curr.price * curr.quantity)}</p>
+            <p>
+              {Object.values(cartItems).reduce(
+                (prev, curr) => prev.price * prev.quantity + curr.price * curr.quantity,
+              )}
+            </p>
           </div>
           <hr />
           <div>
@@ -58,4 +65,17 @@ const Cart = ({ cartItems }) => {
 
   );
 };
+
+Cart.propTypes = {
+  cartCount: PropTypes.number.isRequired,
+  cartItems: PropTypes.shape({
+    product: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    img: PropTypes.string.isRequired,
+    map: PropTypes.func,
+  }).isRequired,
+};
+
 export default Cart;

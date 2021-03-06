@@ -1,10 +1,11 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import './Orders.css';
+import PropTypes from 'prop-types';
 
 const Orders = ({ products }) => (
   <div>
-    <table>
-      <tr>
+    <table className="order-table">
+      <tr className="heading">
         <th>Order</th>
         <th>Items</th>
         <th>Date</th>
@@ -22,8 +23,8 @@ const Orders = ({ products }) => (
 
     <br />
     <div className="item-description-table">
-      <table>
-        <tr>
+      <table className="order-table">
+        <tr className="heading">
           <th>Item Description</th>
           <th>Unit Price</th>
           <th>Quantity</th>
@@ -45,8 +46,8 @@ const Orders = ({ products }) => (
     </div>
     <div>
 
-      <table>
-        <tr>
+      <table className="order-table">
+        <tr className="heading">
           <th>Order</th>
           <th>Items</th>
           <th>Date</th>
@@ -64,4 +65,17 @@ const Orders = ({ products }) => (
     </div>
   </div>
 );
+
+Orders.propTypes = {
+
+  products: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    quantity: PropTypes.number.isRequired,
+    product: PropTypes.string.isRequired,
+    subtotal: PropTypes.number.isRequired,
+    map: PropTypes.func,
+  }).isRequired,
+};
+
 export default Orders;

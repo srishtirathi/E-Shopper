@@ -1,9 +1,9 @@
-table {
+.cart-table {
     border-collapse: collapse;
     width: 100%;
   }
   
-  th, td {
+th, td {
     text-align: left;
     padding: 8px;
   }
@@ -13,10 +13,11 @@ table {
   .cart-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 20%;
+    width: 15rem;
     display: flex;
     flex-direction: column;
  padding:40px; 
+ align-items: center;
   }
   
   .card:hover {
@@ -24,7 +25,7 @@ table {
   }
   
   .cart-container {
-    padding: 2px 16px;
+    /* padding: 2px 16px; */
   }
   .checkout-button {
     background-color: #4CAF50;
@@ -37,10 +38,36 @@ table {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+   
+  }
+  .continue-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 6rem;
+   
   }
   .body-container{
     display: flex;
     justify-content: space-between ;
-    padding-top: 20%;
+    padding-top: 3rem;
     
+  }
+
+  @media screen and (max-width: 27rem) {
+    .body-container{
+      display: flex;
+      align-self: center;
+      align-items: center;
+      flex-direction: column;
+      padding-top: 10rem;
+      padding: 1rem;    
+    }
   }

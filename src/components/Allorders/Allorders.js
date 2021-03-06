@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import './Allorders.css';
 import Orders from '../Orders/Orders';
@@ -41,11 +40,11 @@ class Allorders extends Component {
       <div>
 
         <h1>All Orders</h1>
-        <br />
+        <hr />
         <h1>
           Past Orders (10)
         </h1>
-        <hr />
+
         <div><Orders products={products} /></div>
 
       </div>

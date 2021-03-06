@@ -1,6 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import './Checkout.css';
@@ -30,29 +27,39 @@ handleChange=(event) => {
 // }
 
 render() {
+  const {
+    name, email, address, contact, message,
+  } = this.state;
   return (
-    <div>
-      <div>yay order placed </div>
+
+    <div className="checkout-card">
+      <h1>Yayy! Your order is placed.</h1>
       <div className="form-card">
         <form>
           <label>
             Name:
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
           </label>
+          <input type="text" name="name" value={name} onChange={this.handleChange} />
+          <br />
           <label>
             E-mail:
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
           </label>
+
+          <input type="email" name="email" value={email} onChange={this.handleChange} />
+          <br />
           <label>
             Address:
-            <input type="text" name="address" value={this.state.address} onChange={this.handleChange} />
           </label>
+          <input type="text" name="address" value={address} onChange={this.handleChange} />
+          <br />
           <label>
             Contact Number:
-            <input type="text" name="contact" value={this.state.contact} pattern="[0-9]{10}" onChange={this.handleChange} />
           </label>
+          <input type="text" name="contact" value={contact} pattern="[0-9]{10}" onChange={this.handleChange} />
+          <br />
+          <br />
           <input type="submit" value="submit" />
-          <p>{this.state.message}</p>
+          <p>{message}</p>
         </form>
       </div>
     </div>
