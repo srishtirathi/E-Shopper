@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import './App.css';
 import {
   BrowserRouter,
@@ -11,121 +12,156 @@ import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import Allorders from './components/Allorders/Allorders';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [
-        {
-          id: 1,
+const App = () => {
+  const [products, setProducts] = useState([
+    {
+      id: 1,
 
-          product: 'Mango',
-          price: 30,
-          quantity: 0,
-          img: 'assets/Mango.jpg',
-        },
-        {
-          id: 2,
-          product: 'Banana',
-          price: 30,
-          quantity: 0,
-          img: 'assets/Banana.jpg',
-        },
+      product: 'Mango',
+      price: 30,
+      quantity: 0,
+      img: 'assets/Mango.jpg',
+    },
+    {
+      id: 2,
+      product: 'Banana',
+      price: 30,
+      quantity: 0,
+      img: 'assets/Banana.jpg',
+    },
 
-        {
-          id: 3,
-          product: 'Orange',
-          price: 60,
-          quantity: 0,
-          img: 'assets/Orange.jpg',
-        },
+    {
+      id: 3,
+      product: 'Orange',
+      price: 60,
+      quantity: 0,
+      img: 'assets/Orange.jpg',
+    },
 
-      ],
-      cartCount: 0,
-      cartItems: [],
-    };
-  }
+  ]);
+  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setcartItems] = useState([]);
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     products: [
+  //       {
+  //         id: 1,
 
- increaseCount=(id) => {
-   const { cartCount, products, cartItems } = this.state;
-   let newState = {
-     ...this.state,
-     cartCount: cartCount + 1,
-     products: products.map((eachProduct) => {
-       if (eachProduct.id === id) {
-         return { ...eachProduct, quantity: eachProduct.quantity + 1 };
-       }
-       return eachProduct;
-     }),
-   };
-   newState = {
-     ...newState,
-     cartItems: newState.products.filter((product) => product.quantity > 0),
-   };
-   console.log(cartItems);
-   this.setState(newState);
- }
+  //         product: 'Mango',
+  //         price: 30,
+  //         quantity: 0,
+  //         img: 'assets/Mango.jpg',
+  //       },
+  //       {
+  //         id: 2,
+  //         product: 'Banana',
+  //         price: 30,
+  //         quantity: 0,
+  //         img: 'assets/Banana.jpg',
+  //       },
 
-  decreaseCount=(item) => {
-    const { cartCount, products } = this.state;
+  //       {
+  //         id: 3,
+  //         product: 'Orange',
+  //         price: 60,
+  //         quantity: 0,
+  //         img: 'assets/Orange.jpg',
+  //       },
+
+  //     ],
+  //     cartCount: 0,
+  //     cartItems: [],
+  //   };
+  // }
+
+  const increaseCount = (id) => {
+    const newProduct = products.map((eachProduct) => {
+      if (eachProduct.id === id) {
+        return { ...eachProduct, quantity: eachProduct.quantity + 1 };
+      }
+      return eachProduct;
+    });
+    setProducts(newProduct);
+
+    const newCartItems = newProduct.filter((product) => product.quantity > 0);
+    setcartItems(newCartItems);
+    setCartCount(cartCount + 1);
+
+    // let newState = {
+    //   ...this.state,
+    //   cartCount: cartCount + 1,
+    //   products: products.map((eachProduct) => {
+    //     if (eachProduct.id === id) {
+    //       return { ...eachProduct, quantity: eachProduct.quantity + 1 };
+    //     }
+    //     return eachProduct;
+    //   }),
+    // };
+    // const newCartItems =
+    // [...products, cartItems: products.filter((product) => product.quantity > 0),];
+    // newState = {
+    //   ...newState,
+    //   cartItems: newState.products.filter((product) => product.quantity > 0),
+
+    // console.log(cartItems);
+    // this.setState(newState);
+  };
+
+  const decreaseCount = (item) => {
     if (item.quantity === 0) {
       return;
     }
-    let newState = {
 
-      ...this.state,
-      cartCount: cartCount - 1,
-      products: products.map((eachProduct) => {
-        if (eachProduct === item) {
-          return { ...eachProduct, quantity: eachProduct.quantity - 1 };
-        }
+    const newProduct = products.map((eachProduct) => {
+      if (eachProduct === item) {
+        return { ...eachProduct, quantity: eachProduct.quantity - 1 };
+      }
+      return eachProduct;
+    });
+    setProducts(newProduct);
 
-        return eachProduct;
-      }),
+    const newCartItems = newProduct.filter((product) => product.quantity > 0);
+    setcartItems(newCartItems);
+    setCartCount(cartCount - 1);
+    // newState = {
+    //   ...newState,
+    //   cartItems: newState.products.filter((product) => product.quantity > 0),
+    // };
+  };
 
-    };
-    newState = {
-      ...newState,
-      cartItems: newState.products.filter((product) => product.quantity > 0),
-    };
-    this.setState(newState);
-  }
+  return (
 
-  render() {
-    const { cartCount, products, cartItems } = this.state;
-    return (
+    <div>
+      <BrowserRouter>
+        <Navbar cartCount={cartCount} />
+        <Switch>
+          <Route path="/allorders"><Allorders /></Route>
+          <Route path="/cart">
+            <Cart cartItems={cartItems} cartCount={cartCount} />
+          </Route>
+          <Route path="/" exact>
+            <div className="container">
+              {products.map(
+                (item) => (
+                  <Product
+                    key={item.id}
+                    increaseCount={increaseCount}
+                    decreaseCount={decreaseCount}
+                    item={item}
+                  />
+                ),
+              )}
+            </div>
+          </Route>
+          <Route>
+            <Checkout path="/checkout" />
+          </Route>
+        </Switch>
+      </BrowserRouter>
 
-      <div>
-        <BrowserRouter>
-          <Navbar cartCount={cartCount} />
-          <Switch>
-            <Route path="/allorders"><Allorders /></Route>
-            <Route path="/cart">
-              <Cart cartItems={cartItems} cartCount={cartCount} />
-            </Route>
-            <Route path="/" exact>
-              <div className="container">
-                {products.map(
-                  (item) => (
-                    <Product
-                      key={item.id}
-                      increaseCount={this.increaseCount}
-                      decreaseCount={this.decreaseCount}
-                      item={item}
-                    />
-                  ),
-                )}
-              </div>
-            </Route>
-            <Route>
-              <Checkout path="/checkout" />
-            </Route>
-          </Switch>
-        </BrowserRouter>
-
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
