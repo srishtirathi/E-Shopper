@@ -10,6 +10,7 @@ const Checkout = () => {
   const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
   // const handleChange = (event) => {
   // // if (event.target.name === 'contact' && this.target.value.length > 10) {
   // //   this.setState({ [event.target.name]: event.target.value, message: 'Not valid' });

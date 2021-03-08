@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './App.css';
@@ -11,8 +12,10 @@ import Navbar from './components/Navbar/Navbar';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import Allorders from './components/Allorders/Allorders';
+import { ThemeContext, theme } from './themeContext';
 
 const App = () => {
+  const [navTheme, setNavTheme] = useState(theme.light);
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -130,11 +133,15 @@ const App = () => {
     // };
   };
 
+  console.log(ThemeContext);
   return (
 
     <div>
       <BrowserRouter>
-        <Navbar cartCount={cartCount} />
+
+        <ThemeContext.Provider value={navTheme}>
+          <Navbar cartCount={cartCount} />
+        </ThemeContext.Provider>
         <Switch>
           <Route path="/allorders"><Allorders /></Route>
           <Route path="/cart">
@@ -158,8 +165,9 @@ const App = () => {
             <Checkout path="/checkout" />
           </Route>
         </Switch>
-      </BrowserRouter>
 
+      </BrowserRouter>
+      <button type="button" onClick={() => { setNavTheme(navTheme === theme.light ? theme.dark : theme.light); }}>Change theme</button>
     </div>
   );
 };
