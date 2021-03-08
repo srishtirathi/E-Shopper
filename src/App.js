@@ -18,6 +18,7 @@ class App extends Component {
       products: [
         {
           id: 1,
+
           product: 'Mango',
           price: 30,
           quantity: 0,
